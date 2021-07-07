@@ -112,12 +112,38 @@ header {
   color: var(--color-menu);
 }
 .curent {
+  display: block;
+  position: relative;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
   text-align: left;
   color: var(--color-accent);
+}
+
+.curent::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  background-color: var(--color-accent);
+  transform: scaleY(1);
+  transform: translateY(0px);
+  transition: scaleY(0.5) 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    translateY(-5px) 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.curent:hover::after {
+  display: block;
+  position: absolute;
+  transform: scaleY(0.5);
+  transform: translateY(-25px);
 }
 
 /* .item-li + .item-li {
@@ -203,15 +229,17 @@ header {
   line-height: 1.9;
   letter-spacing: 0.06em;
   color: #ffffff;
-  background: #2196f3;
+  background-color: #2196f3;
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-button:hover,
 .hero-button:focus {
-  background: #188ce8;
+  background-color: #188ce8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
 }
 
 /* == section the best == */
@@ -567,4 +595,56 @@ footer .soc-list:not(:last-child) {
 .soc-list-link:focus {
   fill: #ffffff;
   background-color: var(--color-accent);
+}
+
+/* ======== modal ======= */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  width: 528px;
+  height: 581px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 8px;
+  margin-right: 8px;
+}
+.close-button-svg {
+  width: 11px;
+  height: 11px;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
